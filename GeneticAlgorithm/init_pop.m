@@ -1,8 +1,8 @@
-%% Initialize Population
 function population = init_pop(populationSize, individualLength)
-    population = zeros(populationSize, individualLength);
-    for i = 1 : populationSize
-        population(i, :) = randperm(individualLength);
-    end
+% Compatibility entry point. See README.md and docs/03-migration.md.
+root = fileparts(fileparts(mfilename('fullpath')));
+previousPath = path;
+restorePath = onCleanup(@() path(previousPath)); %#ok<NASGU>
+addpath(root);
+population = tsp.initPopulation(populationSize, individualLength);
 end
-
